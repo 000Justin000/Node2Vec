@@ -168,9 +168,10 @@ module Node2Vec
     #------------------------------------------------------
     function learn_embeddings(walks, ndim)
         str_walks=map(x->string.(x), walks);
-        writedlm("/tmp/str_walk.txt", str_walks);
-        word2vec("/tmp/str_walk.txt", "/tmp/str_walk-vec.txt", size=ndim, verbose=true);
-        model=wordvectors("/tmp/str_walk-vec.txt");
+        writedlm("/tmp/walks.txt", str_walks);
+        word2vec("/tmp/walks.txt", "/tmp/vec.txt", size=ndim, verbose=true);
+        model=wordvectors("/tmp/vec.txt");
+        println();
 
         return model;
     end
